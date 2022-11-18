@@ -1,16 +1,11 @@
-FROM selenium/standalone-chrome
+# really light image for python
+FROM python:3.7-alpine
 
-WORKDIR /usr/app/src
+# make python return things without beeing buffered
+ENV PYTHONBUFFERED 1
+COPY ./requirements.txt /requirements.txt
+RUN pip install -r /requirements.txt
 
-COPY requirements.txt ./
-
-COPY main.py ./
-
-USER root
-RUN apt-get update && apt-get install python3-distutils -y
-RUN wget https://bootstrap.pypa.io/get-pip.py
-RUN python3 get-pip.py
-RUN python3 -m pip install --no-cache-dir --upgrade pip \
-  && python3 -m pip install --no-cache-dir -r requirements.txt
-
-CMD ["python3", "./main.py"]
+RUN mkdir /app
+COPY ./app /app
+WORKDIR /app
