@@ -1,4 +1,4 @@
-FROM python:3.10-slim-bullseye
+FROM selenium/standalone-chrome
 
 WORKDIR /usr/app/src
 
@@ -6,7 +6,11 @@ COPY requirements.txt ./
 
 COPY main.py ./
 
-RUN pip install --no-cache-dir --upgrade pip \
-  && pip install --no-cache-dir -r requirements.txt
+USER root
+RUN apt-get update && apt-get install python3-distutils -y
+RUN wget https://bootstrap.pypa.io/get-pip.py
+RUN python3 get-pip.py
+RUN python3 -m pip install --no-cache-dir --upgrade pip \
+  && python3 -m pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "./main.py"]
+CMD ["python3", "./main.py"]
