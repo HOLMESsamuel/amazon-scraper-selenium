@@ -1,2 +1,2 @@
-# notion-selenium
-Retrieve notion export workspace thanks to selenium on python
+# amazon-scraper
+Retrieve given amazon product price thanks to selenium on python
