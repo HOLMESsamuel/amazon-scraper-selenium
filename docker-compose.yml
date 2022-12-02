@@ -11,7 +11,7 @@ services:
     build: 
     # will use the dockerfile in current folder
       context: .
-    # create a volume to link /app folDer in container and /app folder in host 
+    # create a volume to link /app folder in container and /app folder in host 
     volumes: 
      - ./app:/app
     command: sh -c "python3 bot.py"

@@ -1,5 +1,6 @@
 from time import sleep
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.common.by import By
 from selenium import webdriver
 
 
@@ -14,7 +15,10 @@ driver.get('https://www.amazon.fr/')
 print("page title : " + driver.title)
 
 # get the search bar
-# search_bar = driver.find_element(by=id, value="twotabsearchtextbox")
-# search_bar.send_keys("arduino")
+search_bar = driver.find_element(By.ID, "twotabsearchtextbox")
+search_bar.send_keys("arduino")
+
+search_key = driver.find_element(By.ID, "nav-search-submit-button")
+search_key.click()
 
 driver.save_screenshot('screenshot.png')
